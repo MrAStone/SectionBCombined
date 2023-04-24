@@ -12,30 +12,30 @@
         Dim input As String
         Console.Write("Enter a string: ")
         input = Console.ReadLine
-        Dim vowels As String() = {"a", "e", "i", "o", "u"}
+        Dim vowels As String() = {"a", "e", "i", "o", "u"} ' array containing vowels
         Dim vowelCount As Integer
-        For Each letter In input
+        For Each letter In input ' count the number of vowels in the input
             If vowels.Contains(letter) Then
                 vowelCount += 1
             End If
         Next
-        Dim inputSplit = input.ToCharArray
-        Dim RightMove As Integer = input.Length - 1
-        Dim swapCount = vowelCount \ 2
-        Dim leftMove = 0
-        While swapCount > 0 And leftMove < inputSplit.Length
-            While Not vowels.Contains(inputSplit(leftMove))
+        Dim swapCount = vowelCount \ 2 ' find out how many swaps are needed
+        Dim inputSplit = input.ToCharArray ' split input into array of chars as you can't edit parts of strings
+        Dim RightMove As Integer = input.Length - 1 'Last index used to find rightmost vowel
+        Dim leftMove = 0 ' first index to find leftmost vowel
+        While swapCount > 0  ' loop while there are still swaps to do
+            While Not vowels.Contains(inputSplit(leftMove)) 'find leftmost vowel
                 leftMove += 1
             End While
-            While Not vowels.Contains(inputSplit(RightMove))
+            While Not vowels.Contains(inputSplit(RightMove)) 'find rightmost vowel
                 RightMove -= 1
             End While
-            Dim temp = inputSplit(leftMove)
+            Dim temp = inputSplit(leftMove) ' swap left and right vowels
             inputSplit(leftMove) = inputSplit(RightMove)
             inputSplit(RightMove) = temp
-            swapCount -= 1
-            leftMove += 1
-            RightMove -= 1
+            swapCount -= 1 ' one less swap still to do
+            leftMove += 1 ' move left pointer up
+            RightMove -= 1 ' move right pointer down
         End While
         For Each letter In inputSplit
             Console.Write(letter)
@@ -59,8 +59,6 @@
 
                 input -= 1
             End If
-
-
         End While
         Console.WriteLine(n)
 
