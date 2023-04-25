@@ -6,7 +6,8 @@
         'B20()
         ' B21()
         B22()
-
+        'AlternateB22()
+        'StackB22()
     End Sub
     Sub B22()
         Dim input As String
@@ -43,6 +44,40 @@
         Console.WriteLine()
 
     End Sub
+    Sub AlternateB22()
+        Console.Write("Please enter the word: ") 
+        Dim Word() As Char = Console.ReadLine().ToCharArray() 
+        Dim Vowels As String() = {"a", "e", "i", "o", "u"} 
+        Dim VowelsInWord As List(Of Char) = Word.ToList().Where(AddressOf Vowels.Contains).ToList() 
+        Dim NumVowels As Integer = VowelsInWord.Count 
+        Dim CurrentVowelNum = 0 
+        For Letter As Integer = 0 To Word.Length - 1 Step 1 
+            If Vowels.Contains(Word(Letter)) Then 
+                Word(Letter) = VowelsInWord(VowelsInWord.Count - 1 - CurrentVowelNum) 
+                CurrentVowelNum = CurrentVowelNum + 1 
+            End If 
+        Next
+        Console.WriteLine(Word) 
+    End Sub
+
+    Sub StackB22()
+        Console.Write("Please enter the word: ")
+        Dim Word() As Char = Console.ReadLine().ToCharArray()
+        Dim Vowels As Char() = {"a", "e", "i", "o", "u"}
+        Dim VowelStack As New Stack(Of Char)
+        For x As Integer = 0 To Word.Length - 1 Step 1
+            If Vowels.Contains(Word(x)) Then
+                VowelStack.Push(Word(x))
+            End If
+        Next
+        For x As Integer = 0 To Word.Length - 1 Step 1
+            If Vowels.Contains(Word(x)) Then
+                Word(x) = VowelStack.Pop()
+            End If
+        Next
+        Console.WriteLine(Word)
+    End Sub
+
     Sub B21()
         Dim input As Integer
         Console.Write("Enter a number: ")
