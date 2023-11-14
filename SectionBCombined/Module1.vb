@@ -1,11 +1,14 @@
-﻿Module Module1
+﻿Imports System.Diagnostics.Eventing.Reader
+
+Module Module1
 
     Sub Main()
+        B17()
         'B18()
         'B19()
         'B20()
         ' B21()
-        B22()
+        'B22()
 
     End Sub
     Sub B22()
@@ -149,6 +152,32 @@
         End While
 
 
+    End Sub
+    Sub B17()
+        Dim input As String
+        Console.WriteLine("Enter a string to compress: ")
+        input = Console.ReadLine
+        Dim output As String = ""
+        Dim index As Integer = 0
+        Do
+            Dim curChar As Char = input(index)
+            Dim counter = 1
+            Dim looper As Boolean = True
+            While looper
+                If index + counter < input.Length Then
+                    If curChar = input(index + counter) Then
+                        counter += 1
+                    Else
+                        looper = False
+                    End If
+                Else
+                    looper = False
+                End If
+            End While
+            index += counter
+            output &= curChar & " " & counter & " "
+        Loop While index < input.Length
+        Console.WriteLine(output)
     End Sub
 
 End Module
